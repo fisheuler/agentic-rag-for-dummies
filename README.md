@@ -27,8 +27,8 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/python-3.11%2B-blue?logo=python&logoColor=white" alt="Python"/>
-  <img src="https://img.shields.io/badge/LangGraph-1.2%2B-orange?logo=langchain&logoColor=white" alt="LangGraph"/>
+  <img src="https://img.shields.io/badge/python-3.11%2B-blue?logo=python&amp;logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/LangGraph-1.2%2B-orange?logo=langchain&amp;logoColor=white" alt="LangGraph"/>
   <img src="https://img.shields.io/badge/Qdrant-vector%20db-DC244C" alt="Qdrant"/>
   <img src="https://img.shields.io/badge/LLM%20Providers-Ollama%20%7C%20OpenAI%20%7C%20Anthropic%20%7C%20Google-purple" alt="LLM Providers"/>
 </p>
@@ -260,8 +260,7 @@ Convert the PDFs to Markdown. For more details about other techniques use this c
 
 ```python
 import os
-import pymupdf.layout
-import pymupdf4llm
+import pymupdf
 from pathlib import Path
 import glob
 
@@ -269,7 +268,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 def pdf_to_markdown(pdf_path, output_dir):
     doc = pymupdf.open(pdf_path)
-    md = pymupdf4llm.to_markdown(doc, header=False, footer=False, page_separators=True, ignore_images=True, write_images=False, image_path=None)
+    md = doc.to_markdown(header=False, footer=False, page_separators=True, ignore_images=True, write_images=False, image_path=None)
     md_cleaned = md.encode('utf-8', errors='surrogatepass').decode('utf-8', errors='ignore')
     output_path = Path(output_dir) / Path(doc.name).name
     Path(output_path).with_suffix(".md").write_bytes(md_cleaned.encode('utf-8'))
