@@ -27,7 +27,7 @@ flowchart TD
 - The [agent subgraph](project/rag_agent/graph.py#L28) researches each rewritten question independently.
 - [aggregate_answers](project/rag_agent/nodes.py#L313) combines the workers' answers into one final response.
 
-When the question is clear, [route_after_rewrite](project/rag_agent/edges.py#L7) returns a [Send("agent", {...})](project/rag_agent/edges.py#L12) invocation for each rewritten question. This fans the work out to separate subgraph executions. Workers use the same configured model; they do not require separate model installations.
+When the question is clear, [route_after_rewrite](project/rag_agent/edges.py#L7) returns a [Send("agent", {...})](project/rag_agent/edges.py#L12) invocation for each rewritten question. `Send` selects the worker node and supplies that worker's input state: its question, question index, and empty message list. This fans the work out to separate subgraph executions. Workers use the same configured model; they do not require separate model installations.
 
 ## 2. Retrieval Loop
 
@@ -57,10 +57,10 @@ flowchart TD
 
 After tools run, [should_compress_context](project/rag_agent/nodes.py#L222) estimates the current context size and returns a routing command:
 
-- `Command(goto="orchestrator")` continues the research loop without compression.
-- `Command(goto="compress_context")` invokes [compress_context](project/rag_agent/nodes.py#L259), which summarizes the research context before returning to the orchestrator.
+- [Command(goto="orchestrator")](project/rag_agent/nodes.py#L251) continues the research loop without compression.
+- [Command(goto="compress_context")](project/rag_agent/nodes.py#L251) invokes [compress_context](project/rag_agent/nodes.py#L259), which summarizes the research context before returning to the orchestrator.
 
-These outgoing routes are selected inside the node with `Command`, rather than declared as ordinary edges in the graph builder.
+The implementation uses one [Command(update=..., goto=goto)](project/rag_agent/nodes.py#L251) return: it records retrieval keys and contexts while choosing the next node. Unlike [Send](project/rag_agent/edges.py#L12), which creates worker invocations with their own input state, `Command` updates the current worker's state and selects its next step. These outgoing routes are selected inside the node rather than declared as ordinary edges in the graph builder.
 
 ## 3. Clarification and Resumption
 
@@ -72,17 +72,29 @@ Clarification is a pause in the main workflow, not another retrieval tool:
 
 The no-op node marks the clarification boundary; it does not generate the question shown to the user.
 
+The caller checks [get_state(config)](project/core/chat_interface.py#L120), appends the reply through [update_state(...)](project/core/chat_interface.py#L125), and [streams the graph](project/core/chat_interface.py#L134) with `stream_input = None` to resume pending work. A new request instead supplies a fresh message input.
+
 ## 4. Building Blocks and State
+
+These links point to the APIs' usage in this project, not their third-party library definitions.
 
 | Code | Meaning |
 |---|---|
+| [Send("agent", {...})](project/rag_agent/edges.py#L12) | Creates a worker invocation with a specific question and worker input state. |
+| [Command(update=..., goto=...)](project/rag_agent/nodes.py#L251) | Applies state updates and selects the next node within the current worker. |
 | [StateGraph(State)](project/rag_agent/graph.py#L45) | Main conversation workflow. [State](project/rag_agent/graph_state.py#L16) holds history, rewritten questions, and collected answers. |
 | [StateGraph(AgentState)](project/rag_agent/graph.py#L28) | Per-worker retrieval workflow. [AgentState](project/rag_agent/graph_state.py#L26) holds the question, context, counters, and answer. |
+| [add_node(...)](project/rag_agent/graph.py#L46) | Registers a function or compiled subgraph as a workflow node. |
+| [add_edge(...)](project/rag_agent/graph.py#L52) | Declares a fixed transition between workflow steps. |
+| [add_conditional_edges(...)](project/rag_agent/graph.py#L54) | Delegates routing to a function that can select a node or return worker invocations. |
 | [partial(orchestrator, llm_with_tools=...)](project/rag_agent/graph.py#L29) | Supplies the model dependency; LangGraph supplies `state` when running the node. |
 | [logged_node(...)](project/core/execution_logger.py#L202) | Wraps a node with logging without changing its returned result. |
 | [.compile()](project/rag_agent/graph.py#L43) | Builds the runnable workflow; it does **not** run the LLM yet. |
 | [InMemorySaver()](project/rag_agent/graph.py#L25) | Keeps checkpoints per thread in memory. They do not survive a process restart. |
 | [interrupt_before=[...]](project/rag_agent/graph.py#L59) | Pauses execution so the caller can obtain human input and resume. |
+| [get_state(config)](project/core/chat_interface.py#L120) | Reads the thread checkpoint, including whether execution has pending work. |
+| [update_state(...)](project/core/chat_interface.py#L125) | Adds the user's clarification reply to checkpoint state before resuming. |
+| [stream(..., stream_mode="messages")](project/core/chat_interface.py#L134) | Runs or resumes the graph and yields message chunks with node metadata. |
 
 State updates follow each field's merge rules; they do not all replace the previous value. The [worker counters](project/rag_agent/graph_state.py#L26) use addition, while the main graph's [agent_answers reducer](project/rag_agent/graph_state.py#L5) accumulates worker results or clears them when it receives a reset marker.
 
