@@ -98,28 +98,39 @@ custom_css = """
        ============================================ */
     textarea[placeholder="Type a message..."],
     textarea[data-testid*="textbox"]:not(#file-list-box textarea) {
-        background: transparent !important;
+        background: #0f0f0f !important;
+        color: #e5e5e5 !important;
+        caret-color: #ffffff !important;
         border: none !important;
         box-shadow: none !important;
     }
     
+    textarea[placeholder="Type a message..."]::placeholder {
+        color: #a3a3a3 !important;
+        opacity: 1 !important;
+    }
+
     textarea[placeholder="Type a message..."]:focus {
-        background: transparent !important;
+        background: #0f0f0f !important;
         border: none !important;
         box-shadow: none !important;
     }
     
+    .block:has(textarea[placeholder="Type a message..."]),
+    .form:has(textarea[placeholder="Type a message..."]),
     .gr-text-input:has(textarea[placeholder="Type a message..."]),
     [class*="chatbot"] + * [data-testid="textbox"],
     form:has(textarea[placeholder="Type a message..."]) > div {
-        background: transparent !important;
+        background: #0f0f0f !important;
         border: none !important;
         gap: 12px !important;
     }
     
+    .block:has(textarea[placeholder="Type a message..."]) button,
     form:has(textarea[placeholder="Type a message..."]) button,
     [class*="chatbot"] ~ * button[type="submit"] {
         background: transparent !important;
+        color: #e5e5e5 !important;
         border: none !important;
         padding: 8px !important;
     }
@@ -205,6 +216,21 @@ custom_css = """
     /* ============================================
        CHATBOT CONTAINER
        ============================================ */
+    #rag-chatbot {
+        --block-background-fill: #0f0f0f;
+        --background-fill-primary: #0f0f0f;
+        --background-fill-secondary: #1a1a1a;
+        --body-text-color: #e5e5e5;
+        --body-text-color-subdued: #a3a3a3;
+        background: #0f0f0f !important;
+        color: #e5e5e5 !important;
+        border-color: #3f3f3f !important;
+    }
+
+    #rag-chatbot .placeholder-content .prose {
+        background: transparent !important;
+    }
+
     .chatbot {
         border-radius: 5px !important;
         background: #1a1a1a !important;
@@ -235,6 +261,39 @@ custom_css = """
         border: 1px solid #3f3f3f !important;
         width: fit-content !important;
         max-width: 90% !important;
+    }
+
+    .message.bot .thought,
+    .message.bot .thought-group {
+        --background-fill-primary: #252525;
+        --background-fill-secondary: #151515;
+        --body-text-color: #e5e5e5;
+        --body-text-color-subdued: #b3b3b3;
+        --border-color-primary: #4a4a4a;
+        background: #252525 !important;
+        color: #e5e5e5 !important;
+        border-color: #4a4a4a !important;
+    }
+
+    .message.bot .prose {
+        --body-text-color: #e5e5e5;
+        --body-text-color-subdued: #a3a3a3;
+        color: #e5e5e5 !important;
+    }
+
+    .message.bot .prose pre,
+    .message.bot .prose code {
+        background: #151515 !important;
+    }
+
+    .message.bot .prose a,
+    .message.bot .prose a * {
+        color: #93c5fd !important;
+    }
+
+    .message.bot .prose a:hover,
+    .message.bot .prose a:hover * {
+        color: #bfdbfe !important;
     }
     
     .message-row img {

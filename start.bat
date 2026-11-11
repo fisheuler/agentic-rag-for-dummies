@@ -20,7 +20,7 @@ if not exist "project\.env" (
 curl -s http://localhost:11434/api/tags >nul 2>&1
 if %errorlevel% neq 0 (
     echo [WARNING] Ollama does not seem to be running on localhost:11434.
-    echo           If using local models (default), remember to start Ollama.
+    echo           If using local models, remember to start Ollama.
 )
 
 :: 3. Launch application (prefer uv if available)

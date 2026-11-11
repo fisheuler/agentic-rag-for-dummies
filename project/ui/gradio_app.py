@@ -82,6 +82,7 @@ def create_gradio_ui():
         
         with gr.Tab("Chat"):
             chatbot = gr.Chatbot(
+                elem_id="rag-chatbot",
                 height=720, 
                 placeholder="<strong>Ask me anything!</strong><br><em>I'll search, reason, and act to give you the best answer :)</em>",
                 show_label=False,
