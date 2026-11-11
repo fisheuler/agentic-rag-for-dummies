@@ -1,6 +1,8 @@
 # Database and Chunking Walkthrough
 
-This project searches small child chunks and optionally expands them into larger parents. Storage is not one database: Markdown files, parent JSON, and local Qdrant points have independent lifecycles. Read [the overview](README.md#L1) and [core lifecycle](core.md#L1) first; continue with [graph wiring](../../Graph.md#L1), then [agent decisions](rag-agent.md#L1).
+This project searches small child chunks and optionally expands them into larger parents. Storage is not one database: Markdown files, parent JSON, and local Qdrant points have independent lifecycles. Read [the overview](README.md#L1) and [core lifecycle](core.md#L1) first; continue with [graph wiring](Graph.md#L1), then [agent decisions](rag-agent.md#L1).
+
+For the class-level initialization, JSON operations, collection checks, and write/query flows, see [Chunk Storage and Query Managers](storage-managers.md#L1). For the text-splitting passes and tool invocation examples, see the [Document Chunking Walkthrough](document-chunker.md#L1).
 
 ## 1. Storage and I/O Boundaries
 
@@ -12,7 +14,7 @@ This project searches small child chunks and optionally expands them into larger
 | [VectorDbManager](../../project/db/vector_db_manager.py#L7) | Child documents and embedding configuration | Dense/sparse child representations in local Qdrant |
 | [Retrieval tools](../../project/rag_agent/tools.py#L12) | Query or selected parent ID | Text evidence containing filename, parent ID, content |
 
-[Configured directories](../../project/config.py#L6) separate Markdown, parent storage, and Qdrant. These disk-backed artifacts survive process restarts; the conversation checkpointer described in [Graph.md](../../Graph.md#L1) is in memory. Persistence does not imply backup, integrity checking, or transactional consistency.
+[Configured directories](../../project/config.py#L6) separate Markdown, parent storage, and Qdrant. These disk-backed artifacts survive process restarts; the conversation checkpointer described in [Graph.md](Graph.md#L1) is in memory. Persistence does not imply backup, integrity checking, or transactional consistency.
 
 ```mermaid
 flowchart LR

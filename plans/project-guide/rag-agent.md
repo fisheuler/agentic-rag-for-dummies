@@ -1,6 +1,6 @@
 # RAG Agent Decision Walkthrough
 
-This guide explains decisions, evidence, and failure modes rather than repeating [the full graph wiring](../../Graph.md#L1). Reading order: [overview](README.md#L1), [core](core.md#L1), [database](db.md#L1), graph wiring, then this guide.
+This guide explains decisions, evidence, and failure modes rather than repeating [the full graph wiring](Graph.md#L1). Reading order: [overview](README.md#L1), [core](core.md#L1), [database](db.md#L1), graph wiring, then this guide.
 
 ## 1. Inputs, State, and Merge Rules
 

@@ -53,7 +53,7 @@ This repository demonstrates how to build an **Agentic RAG (Retrieval-Augmented 
 
 For each library's purpose, APIs, and usage locations in this repository, see [DEPENDENCIES.md](DEPENDENCIES.md).
 
-For source-linked component walkthroughs, RAG design tradeoffs, and interview questions, start with the [Project Study and Interview Guide](docs/project-guide/README.md).
+For source-linked component walkthroughs, RAG design tradeoffs, and interview questions, start with the [Project Study and Interview Guide](plans/project-guide/README.md).
 
 ### What's inside
 

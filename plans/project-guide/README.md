@@ -7,8 +7,16 @@
 1. **This overview:** connect startup, ingestion, answering, and evaluation.
 2. [Core lifecycle](core.md#L1): follow initialization, uploads, streaming, and session ownership.
 3. [Database and chunking](db.md#L1): explain character-based chunks, hybrid retrieval, and persistence.
-4. [Graph wiring](../../Graph.md#L1): trace the main conversation graph and retrieval subgraph.
+4. [Graph wiring](Graph.md#L1): trace the main conversation graph and retrieval subgraph.
 5. [Agent decisions](rag-agent.md#L1): inspect reducers, budgets, compression, and grounding limitations.
+
+For a step-by-step algorithm deep dive with worked size and metadata examples, read the [Document Chunking Walkthrough](document-chunker.md#L1).
+
+For how the vector and parent-store managers persist those chunks and serve queries, continue with the [Chunk Storage and Query Managers](storage-managers.md#L1) guide.
+
+For why semantic and lexical retrieval signals are combined, read [Dense and Sparse Hybrid Retrieval](hybrid-retrieval.md#L1).
+
+For question workers, answer collection, and final synthesis, read [Parallel Agent Reasoning and Aggregation](parallel-agent-reasoning.md#L1).
 
 Practice the pitch, ingestion and clarification traces, relevance versus faithfulness, and improvement tradeoffs. Use [the dependency guide](../../DEPENDENCIES.md#L1) for packages.
 

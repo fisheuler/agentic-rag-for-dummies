@@ -1,6 +1,6 @@
 # Core Lifecycle Walkthrough
 
-The core layer connects persistent document storage, the agent graph, and the Gradio experience. It owns application lifecycle and presentation, not the model's retrieval decisions. Read [the overview](README.md#L1) first, continue with [database and chunking](db.md#L1), then [graph wiring](../../Graph.md#L1) and [agent decisions](rag-agent.md#L1).
+The core layer connects persistent document storage, the agent graph, and the Gradio experience. It owns application lifecycle and presentation, not the model's retrieval decisions. Read [the overview](README.md#L1) first, continue with [database and chunking](db.md#L1), then [graph wiring](Graph.md#L1) and [agent decisions](rag-agent.md#L1).
 
 ## 1. Responsibilities and Boundaries
 
@@ -56,7 +56,7 @@ This is best-effort cleanup, not a cross-store transaction. The exception path d
 
 [get_config](../../project/core/rag_system.py#L35) supplies the thread ID, graph recursion limit, and optional callbacks. [chat](../../project/core/chat_interface.py#L113) reads `get_state(config).next`: pending work triggers `update_state` with a `HumanMessage`, followed by `stream(None, ...)`; otherwise it streams a fresh message input.
 
-This resumes the interrupted clarification workflow rather than starting an unrelated conversation. The `history` argument is not replayed as the graph's memory. Checkpoint state holds conversation messages and summaries; see [the graph walkthrough](../../Graph.md#L1) for the interrupt boundary.
+This resumes the interrupted clarification workflow rather than starting an unrelated conversation. The `history` argument is not replayed as the graph's memory. Checkpoint state holds conversation messages and summaries; see [the graph walkthrough](Graph.md#L1) for the interrupt boundary.
 
 With `stream_mode="messages"`, node metadata selects analysis/history-summary output, tool-call previews, and final answer tokens. Only `aggregate_answers` supplies the ordinary final-answer stream; worker prose is not displayed as that final answer. [Tool-result handling](../../project/core/chat_interface.py#L98) limits its **display preview** to 300 characters. It does not truncate the tool context stored for the agent.
 
