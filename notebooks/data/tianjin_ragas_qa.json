@@ -1,0 +1,89 @@
+[
+  {
+    "source": "ajonescheit,+15_Wang_Xu_Aoki_Tientsin (4).pdf",
+    "markdown_file": "ajonescheit,+15_Wang_Xu_Aoki_Tientsin (4).md",
+    "question": "Which city is called Tientsin in the article, and when did it open as a treaty port?",
+    "reference": "Tientsin is an older name for Tianjin. Tianjin opened as a treaty port for foreign trade in 1860.",
+    "context_phrases": [
+      "Tianjin (Pinyin) opened as a treaty port for foreign trade in 1860",
+      "As Tientsin, it became the only city in China with nine foreign concessions"
+    ],
+    "reference_origin": "Assistant-authored starter; human review required"
+  },
+  {
+    "source": "ajonescheit,+15_Wang_Xu_Aoki_Tientsin (4).pdf",
+    "markdown_file": "ajonescheit,+15_Wang_Xu_Aoki_Tientsin (4).md",
+    "question": "When was the German Concession contract in Tianjin signed, and along which river?",
+    "reference": "The German Concession contract was signed in 1895 along the Hai River.",
+    "context_phrases": [
+      "the German Concession contract was signed in 1895 along the Hai River"
+    ],
+    "reference_origin": "Assistant-authored starter; human review required"
+  },
+  {
+    "source": "ajonescheit,+15_Wang_Xu_Aoki_Tientsin (4).pdf",
+    "markdown_file": "ajonescheit,+15_Wang_Xu_Aoki_Tientsin (4).md",
+    "question": "Which bank handled land ownership and construction in the German Concession, and under whose management?",
+    "reference": "The Deutsch-Asiatische Bank handled land ownership and construction under the management of the German Consulate.",
+    "context_phrases": [
+      "land ownership and all the construction were handled by the Deutsch-Asiatische Bank",
+      "under the management of the German Consulate"
+    ],
+    "reference_origin": "Assistant-authored starter; human review required"
+  },
+  {
+    "source": "ajonescheit,+15_Wang_Xu_Aoki_Tientsin (4).pdf",
+    "markdown_file": "ajonescheit,+15_Wang_Xu_Aoki_Tientsin (4).md",
+    "question": "What was the main purpose of the German Concession's original plan, and which military facilities are mentioned?",
+    "reference": "The original plan was mainly for military development. The article mentions army base camps, officers' residences, training grounds, barracks, a hospital, and ancillary buildings.",
+    "context_phrases": [
+      "The original plan was mainly for military development",
+      "training grounds, barracks, hospital and ancillary buildings"
+    ],
+    "reference_origin": "Assistant-authored starter; human review required"
+  },
+  {
+    "source": "ajonescheit,+15_Wang_Xu_Aoki_Tientsin (4).pdf",
+    "markdown_file": "ajonescheit,+15_Wang_Xu_Aoki_Tientsin (4).md",
+    "question": "Which street became the north-south central axis of the German Concession, and how did it relate to the river?",
+    "reference": "Wilhelmstrasse ran parallel to the river and became the north-south central axis. The resulting layout was described as fishbone-shaped.",
+    "context_phrases": [
+      "Wilhelmstrasse, running parallel to the river, became the central axis",
+      "the layout became fishbone"
+    ],
+    "reference_origin": "Assistant-authored starter; human review required"
+  },
+  {
+    "source": "ajonescheit,+15_Wang_Xu_Aoki_Tientsin (4).pdf",
+    "markdown_file": "ajonescheit,+15_Wang_Xu_Aoki_Tientsin (4).md",
+    "question": "When was the German Consulate built, and where was it located?",
+    "reference": "The German Consulate was built in 1907 on Wilhelm-Strasse, also called William Street, next to the Roland Statue and the square.",
+    "context_phrases": [
+      "It was not until 1907 that the German Consulate was built",
+      "next to the Roland Statue and the square"
+    ],
+    "reference_origin": "Assistant-authored starter; human review required"
+  },
+  {
+    "source": "ajonescheit,+15_Wang_Xu_Aoki_Tientsin (4).pdf",
+    "markdown_file": "ajonescheit,+15_Wang_Xu_Aoki_Tientsin (4).md",
+    "question": "How was William Street renamed after 1917 and after the establishment of the People's Republic of China in 1949?",
+    "reference": "After the German Concession was returned to China in 1917, William Street was renamed after Thomas Woodrow Wilson. In 1949, it was renamed Jiefang, or liberation, South Road.",
+    "context_phrases": [
+      "the name of the road was changed to Thomas Woodrow Wilson",
+      "changed to Jiefang (liberation) South Road"
+    ],
+    "reference_origin": "Assistant-authored starter; human review required"
+  },
+  {
+    "source": "ajonescheit,+15_Wang_Xu_Aoki_Tientsin (4).pdf",
+    "markdown_file": "ajonescheit,+15_Wang_Xu_Aoki_Tientsin (4).md",
+    "question": "How large is the area of the renewal and revitalisation project that started in 2024, and how many buildings does it include?",
+    "reference": "The renewal area covers about 52,000 square metres and includes more than 20 buildings.",
+    "context_phrases": [
+      "started the renewal and revitalisation project in 2024",
+      "The area covers about 52,000 square metres and includes more than 20 buildings"
+    ],
+    "reference_origin": "Assistant-authored starter; human review required"
+  }
+]
